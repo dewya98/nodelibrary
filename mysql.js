@@ -1,8 +1,8 @@
 var mySQL=require("mySQL");
 var conn=mySQL.createConnection({
     host:"localhost",
-    user:"root",
-    password:"autoset",
+    user:"yours",
+    password:"yours",
     database:"testdb"
 });
 conn.connect();
