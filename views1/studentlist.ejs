@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>list</h1>
+  <fieldset>
+     <div class="topmenu" style="display: flex;justify-content: space-between;">
+      <form name="frm1"> 
+      <div class="search">
+          <input type="text" name="keyword" ><input type="button" value="검색" onclick="search()">
+       </div>
+      </form>
+       <ul class="menu">
+          <%if(id){%>
+            <li><a href="/logout">로그아웃</a></li>
+            <li><a href="">탈퇴</a></li>
+            <li><a href="/add">정보입력</a></li>
+            <%}else{%>
+          <li><a href="/login">로그인</a></li>
+          <li><a href="/join">회원가입</a></li> 
+            <%}%>
+        </ul> 
+     </div> 
+     <hr>
+    <table width="90%" border="1">
+        <tr>
+            <th>학번</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <%if(id){%>
+            <th></th>
+            <%}%>
+        </tr>
+        <% for(var rs of data){ %>
+        <tr>
+            <td><%=rs.id %></td>
+            <td><%=rs.name %></td>
+            <td><%=rs.kor %></td>
+            <td><%=rs.eng %></td>
+            <td><%=rs.math %></td>
+            <%if(id){%>
+            <td><a href="/update/<%=rs.no%>">수정</a></td><%}%>
+        </tr>
+        <% } %>
+    </table>
+    <%if(id){%>
+    <input type="submit" value="작성" onclick="location.href='/add/'"><%}%>
+</fieldset>
+</html>
+<script>
+  function search(){
+    if(frm1.keyword.value==''){
+      alert("검색할 학생의 이름이나 학번을 입력하세요");
+      frm1.keyword.focus();
+      return false();
+    } 
+    location.href="/search/"+frm1.keyword.value;
+  }
+</script>

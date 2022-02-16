@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>login</h3>
+    <form name="frm1" method="post">
+        <table>
+            <tr>
+                <td>아이디</td>
+                <td><input type="text" name="id" ></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="pw" ></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                  <input type="button" value="로그인" onclick="send()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+<script>
+    function send(){
+        if(frm1.id.value==''){
+            alert("아이디를 입력하세요");
+            frm1.id.focus();
+            return false;
+        }
+        if(frm1.pw.value==''){
+            alert("비밀번호를 입력하세요");
+            frm1.pw.focus();
+            return false;
+        }
+        document.frm1.submit();
+    }
+</script>

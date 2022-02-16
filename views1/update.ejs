@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>정보수정</h1> 
+   <form method="post">
+       <fieldset>
+           <table>
+               <tr>
+                   <td>학번:<%=data.id%></td>
+                   <td>이름:<%=data.name%></td>
+               </tr>
+               <tr>
+                   <th>국어</th>
+                   <td><input type="text" name="kor" value="<%=data.kor%>"></td>
+                </tr>
+                <tr>
+                   <th>영어</th>
+                   <td><input type="text" name="eng" value="<%=data.eng%>"></td>
+                </tr>
+                <tr>
+                   <th>수학</th>
+                   <td><input type="text" name="math" value="<%=data.math%>"></td>
+               </tr>
+               <tr>
+                  <td colspan="2">
+                   <input type="submit" value="수정">
+                   <input type="button" value="삭제" onclick="javascript:del('<%=data.no%>')" >
+                  </td>
+               </tr>
+           </table>
+       </fieldset>
+   </form>
+</body>
+</html>
+<script>
+    function del(no){
+        if(confirm("삭제하니?")){
+            location.href="/del/"+no;
+        }
+    }
+</script>

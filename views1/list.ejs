@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>LIST</h1>
+<%if(id){ %>
+<div style="width:100%">
+<a href="/insert">insert data </a> 
+<a href="/logout">Logout</a>
+<%}else{ %>
+<a href="/login">Login</a> <% } %>
+</div>
+<table width="100%" border="1">
+    <tr>
+        <%if(id){ %>
+        <th></th>
+        <th></th> <% } %>
+        <th>no</th>
+        <th>memo</th>
+        <th>writer</th>
+    </tr>
+    <% for(var rs of data){ %>
+    <tr>
+        <%if(id){
+            if(id==rs.writer){ %>
+        <td><a href="/edit/<%=rs.no %>">편집</a></td>
+        <td><a href="javascript:del(<%=rs.no%>)">삭제</a></td> <%}}%>
+        <td><%=rs.no %></td>
+        <td><%=rs.content %></td>
+        <td><%=rs.writer %></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>
+<script>
+    function del(no){
+        if(confirm("삭제하실겨?")){
+            location.href="/del/"+no;
+        }
+
+    }
+</script>

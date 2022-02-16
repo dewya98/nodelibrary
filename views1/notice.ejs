@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>notice</h1>
+    <div class="menu">
+        <%if(id){%>
+        <a href="/logout">로그아웃</a>
+        <%}else{%>
+        <a href="/login">로그인</a>
+        <%}%>
+    </div>
+    <table with="100%">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+            <th></th>
+        </tr>
+        <%for(var rs of data){ %>
+        <tr>
+            <td><%=rs.no%></td>
+            <td><%=rs.title%></td>
+            <td><%=rs.writer%></td>
+            <td><%=rs.writeday%></td>
+            <td><%=rs.hit%></td>
+            <td><a href="/del/<%=rs.no%>">삭제</a>
+                <a href="/edit/<%=rs.no%>">수정</a>
+            </td>
+        </tr>
+        <% } %>
+        <tr>
+            <td colspan="6" align="center">
+                <%if(currgroup>1){
+                    var prev=(currgroup-2)*5+1; %>
+                    <a href="/notice/<%=prev%>">PREV</a>
+                <% } %>        
+              <%for(var i=startpage;i<=endpage;i++){ 
+                if(i>pagecount){break;} %>
+                [<a href="/notice/<%=i%>"><%=i%></a>]
+              <%}%>
+              <%if(currgroup<groupcount){
+                  var next=currgroup*5+1; %> 
+                  <a href="/notice/<%=next%>">NEXT</a> 
+             <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="추가하기" onclick="location.href='/insert/'"></td>
+        </tr>
+    </table>
+</body>
+</html>
